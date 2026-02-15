@@ -1,0 +1,209 @@
+﻿<Window x:Class="DigitalTwinPatientWPF.HomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitalTwinPatientWPF"
+        mc:Ignorable="d"
+        Title="HomeWindow" Height="700" Width="1200">
+    <Grid>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Source="/logo.png" Width="40" Height="40" Stretch="Uniform"/>
+                <TextBlock x:Name="DoctorFullNameText" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBlock x:Name="DoctorDepartmentText" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBlock Text="🔔" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <Button x:Name="ExitButton" Click="ExitButton_Click" Content="Выход" Width="50" Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TabControl x:Name="menus" TabStripPlacement="Left" Height="600">
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Дашборд" />
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Пациенты" />
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Height="20" VerticalAlignment="Top">
+                        <TabItem.Header>
+                            <TextBlock Text="Назначения" />
+                        </TabItem.Header>
+                        <TabItem.Content>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <StackPanel Margin="20">
+                                    <TextBlock Text="Новое назначение" FontSize="18" FontWeight="Bold" Margin="0,0,0,25" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Margin="0,0,10,0">
+                                            <TextBlock Text="Пациент" Margin="0,3,0,25"/>
+                                            <TextBlock Text="Препарат" Margin="0 3"/>
+                                            <TextBlock Text="Количество" Margin="0 3"/>
+                                            <TextBlock Text="Дозировка" Margin="0 3"/>
+                                            <TextBlock Text="Частота" Margin="0 3"/>
+                                            <TextBlock Text="Сколько применять дней" Margin="0 3"/>
+                                            <TextBlock Text="Дата начала" Margin="0 3"/>
+                                            <TextBlock Text="Дата конца" Margin="0 3"/>
+                                            <TextBlock Text="Инструкция" Margin="0 3"/>
+                                            <TextBlock Text="Статус назначения" />
+                                        </StackPanel>
+                                        <StackPanel>
+                                            <TextBox x:Name="PatientText" Margin="0 1" TextChanged="PatientText_TextChanged"/>
+                                            <ComboBox x:Name="PatientIdComboBox" Text="Выбор пациента" Margin="0 1.4" />
+                                            <ComboBox x:Name="MedicationIdComboBox" Text="Выбор препарата" Width="150" Margin="0 1.4"/>
+                                            <TextBox x:Name="QuantityText" Margin="0 1"/>
+                                            <ComboBox x:Name="DoseUnitIdComboBox" Text="Выбор дозировки" Width="150" Margin="0 1.4"/>
+                                            <ComboBox x:Name="FrequenceIdComboBox" Text="Выбор частоты" Width="150" Margin="0 1.4"/>
+                                            <TextBox x:Name="DurationInDaysText" Margin="0 1"/>
+                                            <TextBox x:Name="StartDateText" Margin="0 1"/>
+                                            <TextBox x:Name="EndDateText" Margin="0 1"/>
+                                            <ComboBox x:Name="InstructionIdComboBox" Text="Выбор инструкции" Width="150" Margin="0 1.4"/>
+                                            <ComboBox x:Name="PrescriptionStatusIdComboBox" Text="Выбор статуса назначения" Width="150" Margin="0 1.4"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Button x:Name="CreatePrescriptionButton" Click="CreatePrescriptionButton_Click" Content="Создать" Width="100" Margin="0,10,0,0"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </TabItem.Content>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Расписание" />
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Аналитика" />
+                        </TabItem.Header>
+
+                        <TabItem.Content>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <StackPanel Margin="20">
+
+                                    <!-- Заголовок -->
+                                    <TextBlock Text="Рабочая нагрузка врача"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Margin="0,0,0,20"/>
+
+                                    <!-- Виджет рабочей нагрузки -->
+                                    <Border BorderThickness="1"
+                        BorderBrush="#DDDDDD"
+                        CornerRadius="8"
+                        Padding="15"
+                        Background="#FAFAFA">
+
+                                        <StackPanel>
+
+                                            <TextBlock Text="Анализ количества приёмов"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,10"/>
+
+                                            <!-- Псевдо-график (по дням недели) -->
+                                            <StackPanel Orientation="Horizontal"
+                                    Height="150"
+                                    VerticalAlignment="Bottom"
+                                    Margin="0,0,0,20">
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="80" Width="30" Background="#4CAF50"/>
+                                                    <TextBlock Text="Пн" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="120" Width="30" Background="#2196F3"/>
+                                                    <TextBlock Text="Вт" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="60" Width="30" Background="#FFC107"/>
+                                                    <TextBlock Text="Ср" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="140" Width="30" Background="#F44336"/>
+                                                    <TextBlock Text="Чт" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="90" Width="30" Background="#9C27B0"/>
+                                                    <TextBlock Text="Пт" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                            </StackPanel>
+
+                                            <!-- Сводная статистика -->
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Border Grid.Column="0"
+                                    Background="#E3F2FD"
+                                    Padding="12"
+                                    Margin="5"
+                                    CornerRadius="6">
+                                                    <StackPanel>
+                                                        <TextBlock Text="Сегодня" FontWeight="SemiBold"/>
+                                                        <TextBlock Text="14 приёмов" FontSize="16"/>
+                                                    </StackPanel>
+                                                </Border>
+
+                                                <Border Grid.Column="1"
+                                    Background="#E8F5E9"
+                                    Padding="12"
+                                    Margin="5"
+                                    CornerRadius="6">
+                                                    <StackPanel>
+                                                        <TextBlock Text="За неделю" FontWeight="SemiBold"/>
+                                                        <TextBlock Text="62 приёма" FontSize="16"/>
+                                                    </StackPanel>
+                                                </Border>
+
+                                                <Border Grid.Column="2"
+                                    Background="#FFFDE7"
+                                    Padding="12"
+                                    Margin="5"
+                                    CornerRadius="6">
+                                                    <StackPanel>
+                                                        <TextBlock Text="За месяц" FontWeight="SemiBold"/>
+                                                        <TextBlock Text="248 приёмов" FontSize="16"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
+
+                                            <TextBlock Text="Данные обновляются в режиме реального времени"
+                                   FontStyle="Italic"
+                                   Foreground="Gray"
+                                   Margin="0,15,0,0"/>
+
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </TabItem.Content>
+                    </TabItem>
+
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Отчеты" />
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Справочники" />
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Настройки" />
+                        </TabItem.Header>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
