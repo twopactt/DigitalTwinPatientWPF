@@ -43,7 +43,7 @@ namespace DigitalTwinPatientWPF
 
         private void CheckInactivity(object sender, EventArgs e)
         {
-            if ((DateTime.Now - _lastActivity).TotalSeconds >= 10)
+            if ((DateTime.Now - _lastActivity).TotalSeconds >= 100)
             {
                 _timer.Stop();
                 _mh.ShowError("Сессия завершена из-за неактивности");
@@ -262,9 +262,9 @@ namespace DigitalTwinPatientWPF
                         ? $"{p.LastMetricValue.Name}: {p.LastMetricValue.Value}"
                         : "Нет данных",
                     StatusName = p.Status ?? "Не указан",
-                    RiskLevel = p.Status == "в тяжелом состоянии"
+                    RiskLevel = p.Status == "Хронический"
                         ? "High" 
-                        : p.Status == "в легком состоянии" ? "Medium" : "Low" 
+                        : p.Status == "Подтвержденный" ? "Medium" : "Low" 
                 })
                 .ToList();
 
@@ -331,8 +331,8 @@ namespace DigitalTwinPatientWPF
                     ? $"{p.LastMetricValue.Name}: {p.LastMetricValue.Value}"
                     : "Нет данных",
                 StatusName = p.Status ?? "Не указан",
-                RiskLevel = p.Status == "в тяжелом состоянии" ? "High" :
-                           p.Status == "в легком состоянии" ? "Medium" : "Low"
+                RiskLevel = p.Status == "Хронический" ? "High" :
+                           p.Status == "Подтвержденный" ? "Medium" : "Low"
             }).ToList();
 
             PatientsGrid.ItemsSource = result;

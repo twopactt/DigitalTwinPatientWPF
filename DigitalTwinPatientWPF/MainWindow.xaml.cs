@@ -39,10 +39,10 @@ namespace DigitalTwinPatientWPF
                 twoFactorWindow.Owner = this;
                 twoFactorWindow.ShowDialog();
 
-                if (!twoFactorWindow.IsConfirm)
-                {
-                    return;
-                }    
+                //if (!twoFactorWindow.IsConfirm)
+                //{
+                //    return;
+                //}    
 
                 CurrentSession.CurrentUser = doctor;
 

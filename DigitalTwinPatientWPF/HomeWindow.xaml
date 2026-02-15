@@ -21,8 +21,43 @@
                         <TabItem.Header>
                             <TextBlock Text="Дашборд" />
                         </TabItem.Header>
+                        <TabItem.Content>
+                            <!-- Система оповещений -->
+                            <Border Margin="10"
+                                BorderThickness="1"
+                                BorderBrush="#CCCCCC"
+                                CornerRadius="8"
+                                Padding="12"
+                                Background="#FFFFFF">
+
+                                <StackPanel>
+                                    <TextBlock Text="Оповещения"
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Margin="0,0,0,10"/>
+
+                                    <!-- Критическое -->
+                                    <Border Background="#FDECEA" Padding="10" CornerRadius="5" Margin="0,5">
+                                        <TextBlock Text="Критическое: резкое ухудшение показателей пациента №16"
+                                            Foreground="#B71C1C"/>
+                                    </Border>
+
+                                    <!-- Предупреждение -->
+                                    <Border Background="#FFF8E1" Padding="10" CornerRadius="5" Margin="0,5">
+                                        <TextBlock Text="Предупреждение: превышена нагрузка на врача"
+                                            Foreground="#F57F17"/>
+                                    </Border>
+
+                                    <!-- Информационное -->
+                                    <Border Background="#E3F2FD" Padding="10" CornerRadius="5" Margin="0,5">
+                                        <TextBlock Text="Информация: обновлены аналитические данные"
+                                            Foreground="#0D47A1"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                        </TabItem.Content>
                     </TabItem>
-                    
+
                     <TabItem>
                         <TabItem.Header>
                             <TextBlock Text="Пациенты" />
@@ -79,11 +114,11 @@
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding RiskLevel}" Value="High">
                                                     <Setter Property="Background" Value="#FFE6B3B3" />
-                                                    <Setter Property="ToolTip" Value="Высокий риск" />
+                                                    <Setter Property="ToolTip" Value="Хронический" />
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding RiskLevel}" Value="High">
+                                                <DataTrigger Binding="{Binding RiskLevel}" Value="Medium">
                                                     <Setter Property="Background" Value="#FFE9E6B3" />
-                                                    <Setter Property="ToolTip" Value="Средний риск" />
+                                                    <Setter Property="ToolTip" Value="Подтвержденный" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -94,11 +129,11 @@
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding RiskLevel}" Value="High">
                                                     <Setter Property="Background" Value="#FFE6B3B3"/>
-                                                    <Setter Property="ToolTip" Value="Высокий риск"/>
+                                                    <Setter Property="ToolTip" Value="Хронический"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding RiskLevel}" Value="Medium">
                                                     <Setter Property="Background" Value="#FFF9E6B3"/>
-                                                    <Setter Property="ToolTip" Value="Средний риск"/>
+                                                    <Setter Property="ToolTip" Value="Подтвержденный"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -287,6 +322,109 @@
                                                 Margin="0,15,0,0"/>
                                         </StackPanel>
                                     </Border>
+
+                                    <!-- Эффективность лечения -->
+                                    <Border Margin="0,30,0,0"
+                                        BorderThickness="1"
+                                        BorderBrush="#DDDDDD"
+                                        CornerRadius="8"
+                                        Padding="15"
+                                        Background="#FAFAFA">
+
+                                        <StackPanel>
+                                            <TextBlock Text="Эффективность лечения"
+                                                FontSize="16"
+                                                FontWeight="Bold"
+                                                Margin="0,0,0,10"/>
+
+                                            <TextBlock Text="Динамика показателей состояния пациентов"
+                                                Foreground="Gray"
+                                                Margin="0,0,0,15"/>
+
+                                            <!-- Псевдо-линейный график -->
+                                            <StackPanel Orientation="Horizontal"
+                                                Height="150"
+                                                VerticalAlignment="Bottom"
+                                                Margin="0,0,0,20">
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="40" Width="30" Background="#F44336"/>
+                                                    <TextBlock Text="Янв" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="65" Width="30" Background="#FF9800"/>
+                                                    <TextBlock Text="Фев" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="85" Width="30" Background="#FFC107"/>
+                                                    <TextBlock Text="Мар" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="100" Width="30" Background="#8BC34A"/>
+                                                    <TextBlock Text="Апр" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Margin="8" VerticalAlignment="Bottom">
+                                                    <Border Height="90" Width="30" Background="#9C27B0"/>
+                                                    <TextBlock Text="Май" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <TextBlock Text="Рост эффективности терапии: +28%"
+                                                Foreground="Green"
+                                                FontWeight="SemiBold"
+                                                Margin="0,15,0,0"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <!-- Статистика заболеваний -->
+                                    <Border Margin="0,30,0,0"
+                                        BorderThickness="1"
+                                        BorderBrush="#DDDDDD"
+                                        CornerRadius="8"
+                                        Padding="15"
+                                        Background="#FAFAFA">
+
+                                        <StackPanel>
+                                            <TextBlock Text="Статистика заболеваний"
+                                                FontSize="16"
+                                                FontWeight="Bold"
+                                                Margin="0,0,0,10"/>
+
+                                            <TextBlock Text="Распределение пациентов по нозологиям"
+                                                Foreground="Gray"
+                                                Margin="0,0,0,15"/>
+
+                                            <!-- Псевдо-диаграмма -->
+                                            <StackPanel>
+
+                                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                                    <Rectangle Width="200" Height="18" Fill="#F44336"/>
+                                                    <TextBlock Text=" Сердечно-сосудистые (40%)" VerticalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                                    <Rectangle Width="140" Height="18" Fill="#2196F3"/>
+                                                    <TextBlock Text=" Эндокринные (28%)" VerticalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                                    <Rectangle Width="90" Height="18" Fill="#FFC107"/>
+                                                    <TextBlock Text=" Дыхательная система (18%)" VerticalAlignment="Center"/>
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                                    <Rectangle Width="60" Height="18" Fill="#9C27B0"/>
+                                                    <TextBlock Text=" Прочие (14%)" VerticalAlignment="Center"/>
+                                                </StackPanel>
+
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+
                                 </StackPanel>
                             </ScrollViewer>
                         </TabItem.Content>
