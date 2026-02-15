@@ -13,10 +13,10 @@ namespace DigitalTwinPatientWPF.Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DigitalTwinPatientDBTestEntities : DbContext
+    public partial class DigitalTwinPatientDBTestOneEntities : DbContext
     {
-        public DigitalTwinPatientDBTestEntities()
-            : base("name=DigitalTwinPatientDBTestEntities")
+        public DigitalTwinPatientDBTestOneEntities()
+            : base("name=DigitalTwinPatientDBTestOneEntities")
         {
         }
     
@@ -27,14 +27,14 @@ namespace DigitalTwinPatientWPF.Database
     
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<BloodType> BloodType { get; set; }
-        public virtual DbSet<Consultation> Consultation { get; set; }
+        public virtual DbSet<Consultaion> Consultaion { get; set; }
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Diagnosis> Diagnosis { get; set; }
         public virtual DbSet<DiagnosisCategory> DiagnosisCategory { get; set; }
         public virtual DbSet<DiagnosisStatus> DiagnosisStatus { get; set; }
         public virtual DbSet<Doctor> Doctor { get; set; }
         public virtual DbSet<DoseUnit> DoseUnit { get; set; }
-        public virtual DbSet<Frequency> Frequency { get; set; }
+        public virtual DbSet<Frequence> Frequence { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<HealthMetric> HealthMetric { get; set; }
         public virtual DbSet<Instruction> Instruction { get; set; }
@@ -43,10 +43,10 @@ namespace DigitalTwinPatientWPF.Database
         public virtual DbSet<MetricType> MetricType { get; set; }
         public virtual DbSet<Notification> Notification { get; set; }
         public virtual DbSet<Patient> Patient { get; set; }
-        public virtual DbSet<PatientComplaint> PatientComplaint { get; set; }
+        public virtual DbSet<PatientCompaint> PatientCompaint { get; set; }
         public virtual DbSet<PatientHistory> PatientHistory { get; set; }
-        public virtual DbSet<PresciptionArchive> PresciptionArchive { get; set; }
         public virtual DbSet<Prescription> Prescription { get; set; }
+        public virtual DbSet<PrescriptionArchive> PrescriptionArchive { get; set; }
         public virtual DbSet<PrescriptionStatus> PrescriptionStatus { get; set; }
         public virtual DbSet<Severity> Severity { get; set; }
         public virtual DbSet<Specialization> Specialization { get; set; }

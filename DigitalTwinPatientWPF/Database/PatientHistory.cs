@@ -17,8 +17,8 @@ namespace DigitalTwinPatientWPF.Database
         public int Id { get; set; }
         public int PatientId { get; set; }
         public int DiagnosisId { get; set; }
-        public System.DateTime DiagnosedDate { get; set; }
-        public Nullable<int> DiagnosisStatusId { get; set; }
+        public int DiagnosisStatusId { get; set; }
+        public System.DateTime DiagnosisDate { get; set; }
         public string Notes { get; set; }
     
         public virtual Diagnosis Diagnosis { get; set; }

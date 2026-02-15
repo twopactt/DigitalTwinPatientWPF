@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Image Source="/logo.png" Width="40" Height="40" Stretch="Uniform"/>
+                <Image Source="/Images/logo.png" Width="40" Height="40" Stretch="Uniform"/>
                 <TextBlock x:Name="DoctorFullNameText" VerticalAlignment="Center" Margin="0,0,10,0"/>
                 <TextBlock x:Name="DoctorDepartmentText" VerticalAlignment="Center" Margin="0,0,10,0"/>
                 <TextBlock Text="🔔" VerticalAlignment="Center" Margin="0,0,10,0"/>
@@ -22,11 +22,119 @@
                             <TextBlock Text="Дашборд" />
                         </TabItem.Header>
                     </TabItem>
+                    
                     <TabItem>
                         <TabItem.Header>
                             <TextBlock Text="Пациенты" />
                         </TabItem.Header>
+                        <TabItem.Content>
+                            <!--оборачиваем в стак панель, чтобы поиск сделать в панели-->
+                            <StackPanel>
+                                <Border BorderBrush="#ccc" BorderThickness="1" Padding="10" CornerRadius="5">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                                        <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="0,0,10,0" />
+
+                                        <TextBox x:Name="SearchTextBox"
+                                                 Width="250"
+                                                 Margin="0,0,10,0"
+                                                 ToolTip="ФИО, Id пациента или диагноз" />
+
+                                        <Button Content="Найти"
+                                            Width="80"
+                                            Click="SearchButton_Click"/>
+
+                                        <Button Content="Сброс"
+                                            Width="80"
+                                            Margin="10,0,0,0"
+                                            Click="ResetSearchButton_Click"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <DataGrid x:Name="PatientsGrid" 
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          SelectionMode="Single"
+                                          Margin="10">
+                                    <!-- Контекстное меню-->
+                                    <DataGrid.RowStyle>
+                                        <Style TargetType="DataGridRow">
+                                            <Setter Property="ContextMenu">
+                                                <Setter.Value>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Открыть карту" Padding="5">
+                                                        </MenuItem>
+                                                        <MenuItem Header="Создать назначение" Padding="5">
+                                                        </MenuItem>
+                                                        <MenuItem Header="Запланировать визит" Padding="5">
+                                                        </MenuItem>
+                                                        <MenuItem Header="Экспорт данных" Padding="5">
+                                                        </MenuItem>
+                                                        <MenuItem Header="Быстрая заметка" Padding="5">
+                                                        </MenuItem>
+                                                    </ContextMenu>
+                                                </Setter.Value>
+                                            </Setter>
+
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RiskLevel}" Value="High">
+                                                    <Setter Property="Background" Value="#FFE6B3B3" />
+                                                    <Setter Property="ToolTip" Value="Высокий риск" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RiskLevel}" Value="High">
+                                                    <Setter Property="Background" Value="#FFE9E6B3" />
+                                                    <Setter Property="ToolTip" Value="Средний риск" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <!-- вот здесь конец-->
+                                    <DataGrid.Resources>
+                                        <Style TargetType="DataGridRow">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RiskLevel}" Value="High">
+                                                    <Setter Property="Background" Value="#FFE6B3B3"/>
+                                                    <Setter Property="ToolTip" Value="Высокий риск"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RiskLevel}" Value="Medium">
+                                                    <Setter Property="Background" Value="#FFF9E6B3"/>
+                                                    <Setter Property="ToolTip" Value="Средний риск"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGrid.Resources>
+
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Header="Фото" Width="50">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Image Source="/Images/logo.png" Width="30" Height="30" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="150" />
+                                        <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" Width="70" />
+                                        <DataGridTextColumn Header="Основной диагноз" Binding="{Binding MainDiagnosis}" Width="150" />
+                                        <DataGridTextColumn Header="Последние показатели" Binding="{Binding LastMetrics}" Width="150" />
+                                        <DataGridTextColumn Header="Статус" Binding="{Binding StatusName}" Width="120" />
+
+                                        <DataGridTemplateColumn Header="Действия" Width="100">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Button Content="👁" Width="25" Margin="2" Tag="{Binding Id}"/>
+                                                        <Button Content="📋" Width="25" Margin="2" Tag="{Binding Id}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </TabItem.Content>
                     </TabItem>
+                        
                     <TabItem Height="20" VerticalAlignment="Top">
                         <TabItem.Header>
                             <TextBlock Text="Назначения" />
@@ -80,31 +188,30 @@
                         <TabItem.Content>
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
                                 <StackPanel Margin="20">
-
+                                    
                                     <!-- Заголовок -->
                                     <TextBlock Text="Рабочая нагрузка врача"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Margin="0,0,0,20"/>
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Margin="0,0,0,20"/>
 
                                     <!-- Виджет рабочей нагрузки -->
                                     <Border BorderThickness="1"
-                        BorderBrush="#DDDDDD"
-                        CornerRadius="8"
-                        Padding="15"
-                        Background="#FAFAFA">
+                                        BorderBrush="#DDDDDD"
+                                        CornerRadius="8"
+                                        Padding="15"
+                                        Background="#FAFAFA">
 
                                         <StackPanel>
-
                                             <TextBlock Text="Анализ количества приёмов"
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,0,10"/>
+                                                FontWeight="SemiBold"
+                                                Margin="0,0,0,10"/>
 
                                             <!-- Псевдо-график (по дням недели) -->
                                             <StackPanel Orientation="Horizontal"
-                                    Height="150"
-                                    VerticalAlignment="Bottom"
-                                    Margin="0,0,0,20">
+                                                Height="150"
+                                                VerticalAlignment="Bottom"
+                                                Margin="0,0,0,20">
 
                                                 <StackPanel Margin="8" VerticalAlignment="Bottom">
                                                     <Border Height="80" Width="30" Background="#4CAF50"/>
@@ -130,7 +237,6 @@
                                                     <Border Height="90" Width="30" Background="#9C27B0"/>
                                                     <TextBlock Text="Пт" HorizontalAlignment="Center"/>
                                                 </StackPanel>
-
                                             </StackPanel>
 
                                             <!-- Сводная статистика -->
@@ -142,10 +248,10 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <Border Grid.Column="0"
-                                    Background="#E3F2FD"
-                                    Padding="12"
-                                    Margin="5"
-                                    CornerRadius="6">
+                                                    Background="#E3F2FD"
+                                                    Padding="12"
+                                                    Margin="5"
+                                                    CornerRadius="6">
                                                     <StackPanel>
                                                         <TextBlock Text="Сегодня" FontWeight="SemiBold"/>
                                                         <TextBlock Text="14 приёмов" FontSize="16"/>
@@ -153,10 +259,10 @@
                                                 </Border>
 
                                                 <Border Grid.Column="1"
-                                    Background="#E8F5E9"
-                                    Padding="12"
-                                    Margin="5"
-                                    CornerRadius="6">
+                                                    Background="#E8F5E9"
+                                                    Padding="12"
+                                                    Margin="5"
+                                                    CornerRadius="6">
                                                     <StackPanel>
                                                         <TextBlock Text="За неделю" FontWeight="SemiBold"/>
                                                         <TextBlock Text="62 приёма" FontSize="16"/>
@@ -164,10 +270,10 @@
                                                 </Border>
 
                                                 <Border Grid.Column="2"
-                                    Background="#FFFDE7"
-                                    Padding="12"
-                                    Margin="5"
-                                    CornerRadius="6">
+                                                    Background="#FFFDE7"
+                                                    Padding="12"
+                                                    Margin="5"
+                                                    CornerRadius="6">
                                                     <StackPanel>
                                                         <TextBlock Text="За месяц" FontWeight="SemiBold"/>
                                                         <TextBlock Text="248 приёмов" FontSize="16"/>
@@ -176,10 +282,9 @@
                                             </Grid>
 
                                             <TextBlock Text="Данные обновляются в режиме реального времени"
-                                   FontStyle="Italic"
-                                   Foreground="Gray"
-                                   Margin="0,15,0,0"/>
-
+                                                FontStyle="Italic"
+                                                Foreground="Gray"
+                                                Margin="0,15,0,0"/>
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>

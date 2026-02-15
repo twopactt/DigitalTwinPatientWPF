@@ -19,7 +19,7 @@ namespace DigitalTwinPatientWPF.Database
         public Nullable<int> DoctorId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool IsRead { get; set; }
+        public Nullable<bool> IsRead { get; set; }
     
         public virtual Doctor Doctor { get; set; }
         public virtual Patient Patient { get; set; }

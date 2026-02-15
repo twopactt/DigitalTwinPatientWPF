@@ -17,16 +17,16 @@ namespace DigitalTwinPatientWPF.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Medication()
         {
-            this.PresciptionArchive = new HashSet<PresciptionArchive>();
             this.Prescription = new HashSet<Prescription>();
+            this.PrescriptionArchive = new HashSet<PrescriptionArchive>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PresciptionArchive> PresciptionArchive { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription> Prescription { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrescriptionArchive> PrescriptionArchive { get; set; }
     }
 }

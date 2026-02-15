@@ -18,10 +18,10 @@ namespace DigitalTwinPatientWPF.Database
         public int PatientId { get; set; }
         public int DoctorId { get; set; }
         public int MedicationId { get; set; }
-        public decimal Quantity { get; set; }
+        public int Quantity { get; set; }
         public int DoseUnitId { get; set; }
-        public int FrequencyId { get; set; }
-        public int DurationInDays { get; set; }
+        public int FrequenceId { get; set; }
+        public int DurationInDay { get; set; }
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public int InstructionId { get; set; }
@@ -30,7 +30,7 @@ namespace DigitalTwinPatientWPF.Database
     
         public virtual Doctor Doctor { get; set; }
         public virtual DoseUnit DoseUnit { get; set; }
-        public virtual Frequency Frequency { get; set; }
+        public virtual Frequence Frequence { get; set; }
         public virtual Instruction Instruction { get; set; }
         public virtual Medication Medication { get; set; }
         public virtual Patient Patient { get; set; }

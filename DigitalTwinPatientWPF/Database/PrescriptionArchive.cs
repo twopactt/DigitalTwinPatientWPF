@@ -12,17 +12,14 @@ namespace DigitalTwinPatientWPF.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class PatientComplaint
+    public partial class PrescriptionArchive
     {
         public int Id { get; set; }
         public int PatientId { get; set; }
-        public int SymptomId { get; set; }
-        public System.DateTime ComplaintDate { get; set; }
-        public int SeverityId { get; set; }
-        public string Description { get; set; }
+        public int MedicationId { get; set; }
+        public System.DateTime UpdatedDate { get; set; }
     
+        public virtual Medication Medication { get; set; }
         public virtual Patient Patient { get; set; }
-        public virtual Severity Severity { get; set; }
-        public virtual Symptom Symptom { get; set; }
     }
 }

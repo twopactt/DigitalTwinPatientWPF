@@ -17,14 +17,14 @@ namespace DigitalTwinPatientWPF.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Patient()
         {
-            this.Consultation = new HashSet<Consultation>();
+            this.Consultaion = new HashSet<Consultaion>();
             this.HealthMetric = new HashSet<HealthMetric>();
             this.MedicalCard = new HashSet<MedicalCard>();
             this.Notification = new HashSet<Notification>();
-            this.PatientComplaint = new HashSet<PatientComplaint>();
+            this.PatientCompaint = new HashSet<PatientCompaint>();
             this.PatientHistory = new HashSet<PatientHistory>();
-            this.PresciptionArchive = new HashSet<PresciptionArchive>();
             this.Prescription = new HashSet<Prescription>();
+            this.PrescriptionArchive = new HashSet<PrescriptionArchive>();
             this.WellnessJournal = new HashSet<WellnessJournal>();
         }
     
@@ -33,15 +33,15 @@ namespace DigitalTwinPatientWPF.Database
         public string Name { get; set; }
         public string Patronymic { get; set; }
         public int GenderId { get; set; }
-        public Nullable<int> AddressId { get; set; }
+        public int AddressId { get; set; }
+        public string Email { get; set; }
         public System.DateTime Birthday { get; set; }
         public string Phone { get; set; }
-        public string Email { get; set; }
         public string Password { get; set; }
     
         public virtual Address Address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Consultation> Consultation { get; set; }
+        public virtual ICollection<Consultaion> Consultaion { get; set; }
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HealthMetric> HealthMetric { get; set; }
@@ -50,13 +50,13 @@ namespace DigitalTwinPatientWPF.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notification> Notification { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PatientComplaint> PatientComplaint { get; set; }
+        public virtual ICollection<PatientCompaint> PatientCompaint { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientHistory> PatientHistory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PresciptionArchive> PresciptionArchive { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription> Prescription { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrescriptionArchive> PrescriptionArchive { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WellnessJournal> WellnessJournal { get; set; }
     }

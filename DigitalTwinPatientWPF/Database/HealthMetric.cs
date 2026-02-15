@@ -18,7 +18,7 @@ namespace DigitalTwinPatientWPF.Database
         public int PatientId { get; set; }
         public int MetricTypeId { get; set; }
         public decimal Value { get; set; }
-        public System.DateTime MeasuredAt { get; set; }
+        public System.DateTime MeasuredDate { get; set; }
         public System.DateTime CreatedAt { get; set; }
     
         public virtual MetricType MetricType { get; set; }

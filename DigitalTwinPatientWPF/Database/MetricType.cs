@@ -21,8 +21,8 @@ namespace DigitalTwinPatientWPF.Database
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
         public int UnitOfMetricTypeId { get; set; }
+        public string Name { get; set; }
         public Nullable<decimal> MinValue { get; set; }
         public Nullable<decimal> MaxValue { get; set; }
     

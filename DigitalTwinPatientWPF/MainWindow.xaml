@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
             <TextBlock Text="Авторизация" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <TextBox x:Name="EmailEnter" Margin="10" />
+            <TextBox x:Name="LoginEnter" Margin="10" />
             <PasswordBox x:Name="PasswordEnter" Margin="10" />
             <Button x:Name="LogInButton" Click="LogInButton_Click" Content="Войти" Width="250" />
         </StackPanel>

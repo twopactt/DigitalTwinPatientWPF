@@ -9,7 +9,7 @@ namespace DigitalTwinPatientWPF
 {
     public partial class MainWindow : Window
     {
-        private DigitalTwinPatientDBTestEntities _db = new DigitalTwinPatientDBTestEntities();
+        private DigitalTwinPatientDBTestOneEntities _db = new DigitalTwinPatientDBTestOneEntities();
         private MessageHelper _mh = new MessageHelper();
         public MainWindow()
         {
@@ -20,18 +20,29 @@ namespace DigitalTwinPatientWPF
         {
             try
             {
-                string email = EmailEnter.Text;
-                string password = PasswordEnter.Password;
+                string login = LoginEnter.Text;
+                //string password = PasswordEnter.Password;
 
-                var hashedPassword = PasswordHasher.Hash(password);
-
-                var doctor = _db.Doctor.Where(d => d.Email == email && d.Password == hashedPassword).FirstOrDefault();
+                var doctor = _db.Doctor.Where(d => d.Login == login).FirstOrDefault();
+                //var doctor = _db.Doctor.Where(d => d.Login == login && d.Password == password).FirstOrDefault();
 
                 if (doctor == null)
                 {
                     _mh.ShowError("Неправильная почта или пароль");
                     return;
                 }
+
+                string code = new Random().Next(100000, 999999).ToString();
+                _mh.ShowInfo($"Код двухфакторной аутентификации: {code}");
+
+                TwoFactorWindow twoFactorWindow = new TwoFactorWindow(code);
+                twoFactorWindow.Owner = this;
+                twoFactorWindow.ShowDialog();
+
+                if (!twoFactorWindow.IsConfirm)
+                {
+                    return;
+                }    
 
                 CurrentSession.CurrentUser = doctor;
 

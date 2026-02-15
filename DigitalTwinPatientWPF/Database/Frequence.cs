@@ -12,15 +12,18 @@ namespace DigitalTwinPatientWPF.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Consultation
+    public partial class Frequence
     {
-        public int Id { get; set; }
-        public int PatientId { get; set; }
-        public int DoctorId { get; set; }
-        public System.DateTime DateConsultation { get; set; }
-        public string Notes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Frequence()
+        {
+            this.Prescription = new HashSet<Prescription>();
+        }
     
-        public virtual Doctor Doctor { get; set; }
-        public virtual Patient Patient { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prescription> Prescription { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace DigitalTwinPatientWPF.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Doctor()
         {
-            this.Consultation = new HashSet<Consultation>();
+            this.Consultaion = new HashSet<Consultaion>();
             this.Notification = new HashSet<Notification>();
             this.Prescription = new HashSet<Prescription>();
         }
@@ -28,12 +28,13 @@ namespace DigitalTwinPatientWPF.Database
         public string Patronymic { get; set; }
         public int SpecializationId { get; set; }
         public int DepartmentId { get; set; }
-        public string Phone { get; set; }
         public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Login { get; set; }
         public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Consultation> Consultation { get; set; }
+        public virtual ICollection<Consultaion> Consultaion { get; set; }
         public virtual Department Department { get; set; }
         public virtual Specialization Specialization { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

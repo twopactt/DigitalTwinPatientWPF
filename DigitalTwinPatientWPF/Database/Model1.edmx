@@ -4,24 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DigitalTwinPatientDBTestModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище DigitalTwinPatientDBTestOneModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="City" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Street" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Building" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Building" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="BloodType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Consultation">
+        <EntityType Name="Consultaion">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -36,15 +36,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Diagnosis">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CodeMKB" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodeMKB" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DiagnosisCategoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DiagnosisCategory">
@@ -52,27 +52,28 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="DiagnosisStatus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Patronymic" Type="nvarchar" MaxLength="30" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
           <Property Name="SpecializationId" Type="int" Nullable="false" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="DoseUnit">
@@ -80,14 +81,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <EntityType Name="Frequency">
+        <EntityType Name="Frequence">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -103,8 +104,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientId" Type="int" Nullable="false" />
           <Property Name="MetricTypeId" Type="int" Nullable="false" />
-          <Property Name="Value" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="MeasuredAt" Type="datetime" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="MeasuredDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Instruction">
@@ -112,7 +113,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="MedicalCard">
           <Key>
@@ -122,7 +123,7 @@
           <Property Name="PatientId" Type="int" Nullable="false" />
           <Property Name="BloodTypeId" Type="int" Nullable="false" />
           <Property Name="Height" Type="int" Nullable="false" />
-          <Property Name="Weight" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="10" Scale="5" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
           <Property Name="UpdatedAt" Type="datetime" />
         </EntityType>
@@ -131,17 +132,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="MetricType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UnitOfMetricTypeId" Type="int" Nullable="false" />
-          <Property Name="MinValue" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="MaxValue" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MinValue" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="MaxValue" Type="decimal" Precision="10" Scale="5" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -152,7 +153,7 @@
           <Property Name="DoctorId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="IsRead" Type="bit" />
         </EntityType>
         <EntityType Name="Patient">
           <Key>
@@ -163,21 +164,21 @@
           <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Patronymic" Type="nvarchar" MaxLength="30" />
           <Property Name="GenderId" Type="int" Nullable="false" />
-          <Property Name="AddressId" Type="int" />
-          <Property Name="Birthday" Type="date" Nullable="false" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <EntityType Name="PatientComplaint">
+        <EntityType Name="PatientCompaint">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientId" Type="int" Nullable="false" />
           <Property Name="SymptomId" Type="int" Nullable="false" />
-          <Property Name="ComplaintDate" Type="date" Nullable="false" />
           <Property Name="SeverityId" Type="int" Nullable="false" />
+          <Property Name="CompaintDate" Type="date" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="PatientHistory">
@@ -187,18 +188,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientId" Type="int" Nullable="false" />
           <Property Name="DiagnosisId" Type="int" Nullable="false" />
-          <Property Name="DiagnosedDate" Type="date" Nullable="false" />
-          <Property Name="DiagnosisStatusId" Type="int" />
+          <Property Name="DiagnosisStatusId" Type="int" Nullable="false" />
+          <Property Name="DiagnosisDate" Type="date" Nullable="false" />
           <Property Name="Notes" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="PresciptionArchive">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PatientId" Type="int" Nullable="false" />
-          <Property Name="MedicationId" Type="int" Nullable="false" />
-          <Property Name="UpdateDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Prescription">
           <Key>
@@ -208,44 +200,52 @@
           <Property Name="PatientId" Type="int" Nullable="false" />
           <Property Name="DoctorId" Type="int" Nullable="false" />
           <Property Name="MedicationId" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="DoseUnitId" Type="int" Nullable="false" />
-          <Property Name="FrequencyId" Type="int" Nullable="false" />
-          <Property Name="DurationInDays" Type="int" Nullable="false" />
+          <Property Name="FrequenceId" Type="int" Nullable="false" />
+          <Property Name="DurationInDay" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" />
           <Property Name="InstructionId" Type="int" Nullable="false" />
           <Property Name="PrescriptionStatusId" Type="int" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="PrescriptionArchive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+          <Property Name="MedicationId" Type="int" Nullable="false" />
+          <Property Name="UpdatedDate" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="PrescriptionStatus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Severity">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Specialization">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Symptom">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SymptomCategoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SymptomCategory">
@@ -253,7 +253,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -270,7 +270,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="WellnessJournal">
           <Key>
@@ -282,26 +282,26 @@
           <Property Name="MoodScore" Type="int" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK_Consultation_Doctor">
+        <Association Name="FK_Consultaion_Doctor">
           <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
-          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <End Role="Consultaion" Type="Self.Consultaion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Doctor">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Consultation">
+            <Dependent Role="Consultaion">
               <PropertyRef Name="DoctorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Consultation_Patient">
+        <Association Name="FK_Consultaion_Patient">
           <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
-          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <End Role="Consultaion" Type="Self.Consultaion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Patient">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Consultation">
+            <Dependent Role="Consultaion">
               <PropertyRef Name="PatientId" />
             </Dependent>
           </ReferentialConstraint>
@@ -427,7 +427,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Patient_Address">
-          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
           <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Address">
@@ -450,38 +450,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PatientComplaint_Patient">
+        <Association Name="FK_PatientCompaint_Patient">
           <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
-          <End Role="PatientComplaint" Type="Self.PatientComplaint" Multiplicity="*" />
+          <End Role="PatientCompaint" Type="Self.PatientCompaint" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Patient">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PatientComplaint">
+            <Dependent Role="PatientCompaint">
               <PropertyRef Name="PatientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PatientComplaint_Severity">
+        <Association Name="FK_PatientCompaint_Severity">
           <End Role="Severity" Type="Self.Severity" Multiplicity="1" />
-          <End Role="PatientComplaint" Type="Self.PatientComplaint" Multiplicity="*" />
+          <End Role="PatientCompaint" Type="Self.PatientCompaint" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Severity">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PatientComplaint">
+            <Dependent Role="PatientCompaint">
               <PropertyRef Name="SeverityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PatientComplaint_Symptom">
+        <Association Name="FK_PatientCompaint_Symptom">
           <End Role="Symptom" Type="Self.Symptom" Multiplicity="1" />
-          <End Role="PatientComplaint" Type="Self.PatientComplaint" Multiplicity="*" />
+          <End Role="PatientCompaint" Type="Self.PatientCompaint" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Symptom">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PatientComplaint">
+            <Dependent Role="PatientCompaint">
               <PropertyRef Name="SymptomId" />
             </Dependent>
           </ReferentialConstraint>
@@ -499,7 +499,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PatientHistory_DiagnosisStatus">
-          <End Role="DiagnosisStatus" Type="Self.DiagnosisStatus" Multiplicity="0..1" />
+          <End Role="DiagnosisStatus" Type="Self.DiagnosisStatus" Multiplicity="1" />
           <End Role="PatientHistory" Type="Self.PatientHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DiagnosisStatus">
@@ -518,30 +518,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="PatientHistory">
-              <PropertyRef Name="PatientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PresciptionArchive_Medication1">
-          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
-          <End Role="PresciptionArchive" Type="Self.PresciptionArchive" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medication">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PresciptionArchive">
-              <PropertyRef Name="MedicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PresciptionArchive_Patient1">
-          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
-          <End Role="PresciptionArchive" Type="Self.PresciptionArchive" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patient">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PresciptionArchive">
               <PropertyRef Name="PatientId" />
             </Dependent>
           </ReferentialConstraint>
@@ -570,15 +546,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Prescription_Frequency">
-          <End Role="Frequency" Type="Self.Frequency" Multiplicity="1" />
+        <Association Name="FK_Prescription_Frequence">
+          <End Role="Frequence" Type="Self.Frequence" Multiplicity="1" />
           <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Frequency">
+            <Principal Role="Frequence">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Prescription">
-              <PropertyRef Name="FrequencyId" />
+              <PropertyRef Name="FrequenceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -630,6 +606,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PrescriptionArchive_Medication">
+          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
+          <End Role="PrescriptionArchive" Type="Self.PrescriptionArchive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrescriptionArchive">
+              <PropertyRef Name="MedicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrescriptionArchive_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PrescriptionArchive" Type="Self.PrescriptionArchive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrescriptionArchive">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Symptom_SymptomCategory">
           <End Role="SymptomCategory" Type="Self.SymptomCategory" Multiplicity="1" />
           <End Role="Symptom" Type="Self.Symptom" Multiplicity="*" />
@@ -654,17 +654,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище DigitalTwinPatientDBTestModelContainer">
+        <EntityContainer Name="Хранилище DigitalTwinPatientDBTestOneModelContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodType" EntityType="Self.BloodType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Consultation" EntityType="Self.Consultation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consultaion" EntityType="Self.Consultaion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Diagnosis" EntityType="Self.Diagnosis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiagnosisCategory" EntityType="Self.DiagnosisCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiagnosisStatus" EntityType="Self.DiagnosisStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoseUnit" EntityType="Self.DoseUnit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Frequency" EntityType="Self.Frequency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Frequence" EntityType="Self.Frequence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HealthMetric" EntityType="Self.HealthMetric" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Instruction" EntityType="Self.Instruction" Schema="dbo" store:Type="Tables" />
@@ -673,10 +673,10 @@
           <EntitySet Name="MetricType" EntityType="Self.MetricType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PatientComplaint" EntityType="Self.PatientComplaint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientCompaint" EntityType="Self.PatientCompaint" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientHistory" EntityType="Self.PatientHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PresciptionArchive" EntityType="Self.PresciptionArchive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrescriptionArchive" EntityType="Self.PrescriptionArchive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrescriptionStatus" EntityType="Self.PrescriptionStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Severity" EntityType="Self.Severity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
@@ -685,13 +685,13 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitOfMetricType" EntityType="Self.UnitOfMetricType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WellnessJournal" EntityType="Self.WellnessJournal" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Consultation_Doctor" Association="Self.FK_Consultation_Doctor">
+          <AssociationSet Name="FK_Consultaion_Doctor" Association="Self.FK_Consultaion_Doctor">
             <End Role="Doctor" EntitySet="Doctor" />
-            <End Role="Consultation" EntitySet="Consultation" />
+            <End Role="Consultaion" EntitySet="Consultaion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Consultation_Patient" Association="Self.FK_Consultation_Patient">
+          <AssociationSet Name="FK_Consultaion_Patient" Association="Self.FK_Consultaion_Patient">
             <End Role="Patient" EntitySet="Patient" />
-            <End Role="Consultation" EntitySet="Consultation" />
+            <End Role="Consultaion" EntitySet="Consultaion" />
           </AssociationSet>
           <AssociationSet Name="FK_Diagnosis_DiagnosisCategory" Association="Self.FK_Diagnosis_DiagnosisCategory">
             <End Role="DiagnosisCategory" EntitySet="DiagnosisCategory" />
@@ -741,17 +741,17 @@
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Patient" EntitySet="Patient" />
           </AssociationSet>
-          <AssociationSet Name="FK_PatientComplaint_Patient" Association="Self.FK_PatientComplaint_Patient">
+          <AssociationSet Name="FK_PatientCompaint_Patient" Association="Self.FK_PatientCompaint_Patient">
             <End Role="Patient" EntitySet="Patient" />
-            <End Role="PatientComplaint" EntitySet="PatientComplaint" />
+            <End Role="PatientCompaint" EntitySet="PatientCompaint" />
           </AssociationSet>
-          <AssociationSet Name="FK_PatientComplaint_Severity" Association="Self.FK_PatientComplaint_Severity">
+          <AssociationSet Name="FK_PatientCompaint_Severity" Association="Self.FK_PatientCompaint_Severity">
             <End Role="Severity" EntitySet="Severity" />
-            <End Role="PatientComplaint" EntitySet="PatientComplaint" />
+            <End Role="PatientCompaint" EntitySet="PatientCompaint" />
           </AssociationSet>
-          <AssociationSet Name="FK_PatientComplaint_Symptom" Association="Self.FK_PatientComplaint_Symptom">
+          <AssociationSet Name="FK_PatientCompaint_Symptom" Association="Self.FK_PatientCompaint_Symptom">
             <End Role="Symptom" EntitySet="Symptom" />
-            <End Role="PatientComplaint" EntitySet="PatientComplaint" />
+            <End Role="PatientCompaint" EntitySet="PatientCompaint" />
           </AssociationSet>
           <AssociationSet Name="FK_PatientHistory_Diagnosis" Association="Self.FK_PatientHistory_Diagnosis">
             <End Role="Diagnosis" EntitySet="Diagnosis" />
@@ -765,14 +765,6 @@
             <End Role="Patient" EntitySet="Patient" />
             <End Role="PatientHistory" EntitySet="PatientHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_PresciptionArchive_Medication1" Association="Self.FK_PresciptionArchive_Medication1">
-            <End Role="Medication" EntitySet="Medication" />
-            <End Role="PresciptionArchive" EntitySet="PresciptionArchive" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PresciptionArchive_Patient1" Association="Self.FK_PresciptionArchive_Patient1">
-            <End Role="Patient" EntitySet="Patient" />
-            <End Role="PresciptionArchive" EntitySet="PresciptionArchive" />
-          </AssociationSet>
           <AssociationSet Name="FK_Prescription_Doctor" Association="Self.FK_Prescription_Doctor">
             <End Role="Doctor" EntitySet="Doctor" />
             <End Role="Prescription" EntitySet="Prescription" />
@@ -781,8 +773,8 @@
             <End Role="DoseUnit" EntitySet="DoseUnit" />
             <End Role="Prescription" EntitySet="Prescription" />
           </AssociationSet>
-          <AssociationSet Name="FK_Prescription_Frequency" Association="Self.FK_Prescription_Frequency">
-            <End Role="Frequency" EntitySet="Frequency" />
+          <AssociationSet Name="FK_Prescription_Frequence" Association="Self.FK_Prescription_Frequence">
+            <End Role="Frequence" EntitySet="Frequence" />
             <End Role="Prescription" EntitySet="Prescription" />
           </AssociationSet>
           <AssociationSet Name="FK_Prescription_Instruction" Association="Self.FK_Prescription_Instruction">
@@ -801,6 +793,14 @@
             <End Role="PrescriptionStatus" EntitySet="PrescriptionStatus" />
             <End Role="Prescription" EntitySet="Prescription" />
           </AssociationSet>
+          <AssociationSet Name="FK_PrescriptionArchive_Medication" Association="Self.FK_PrescriptionArchive_Medication">
+            <End Role="Medication" EntitySet="Medication" />
+            <End Role="PrescriptionArchive" EntitySet="PrescriptionArchive" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrescriptionArchive_Patient" Association="Self.FK_PrescriptionArchive_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PrescriptionArchive" EntitySet="PrescriptionArchive" />
+          </AssociationSet>
           <AssociationSet Name="FK_Symptom_SymptomCategory" Association="Self.FK_Symptom_SymptomCategory">
             <End Role="SymptomCategory" EntitySet="SymptomCategory" />
             <End Role="Symptom" EntitySet="Symptom" />
@@ -814,15 +814,15 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DigitalTwinPatientDBTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DigitalTwinPatientDBTestOneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Street" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Building" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Building" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_Address" FromRole="Address" ToRole="Patient" />
         </EntityType>
         <EntityType Name="BloodType">
@@ -830,10 +830,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="MedicalCard" Relationship="Self.FK_MedicalCard_BloodType" FromRole="BloodType" ToRole="MedicalCard" />
         </EntityType>
-        <EntityType Name="Consultation">
+        <EntityType Name="Consultaion">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -842,15 +842,15 @@
           <Property Name="DoctorId" Type="Int32" Nullable="false" />
           <Property Name="DateConsultation" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Doctor" Relationship="Self.FK_Consultation_Doctor" FromRole="Consultation" ToRole="Doctor" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_Consultation_Patient" FromRole="Consultation" ToRole="Patient" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_Consultaion_Doctor" FromRole="Consultaion" ToRole="Doctor" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Consultaion_Patient" FromRole="Consultaion" ToRole="Patient" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_Doctor_Department" FromRole="Department" ToRole="Doctor" />
         </EntityType>
         <EntityType Name="Diagnosis">
@@ -858,8 +858,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodeMKB" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodeMKB" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DiagnosisCategoryId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DiagnosisCategory" Relationship="Self.FK_Diagnosis_DiagnosisCategory" FromRole="Diagnosis" ToRole="DiagnosisCategory" />
           <NavigationProperty Name="PatientHistory" Relationship="Self.FK_PatientHistory_Diagnosis" FromRole="Diagnosis" ToRole="PatientHistory" />
@@ -869,7 +869,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Diagnosis" Relationship="Self.FK_Diagnosis_DiagnosisCategory" FromRole="DiagnosisCategory" ToRole="Diagnosis" />
         </EntityType>
         <EntityType Name="DiagnosisStatus">
@@ -877,7 +877,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="PatientHistory" Relationship="Self.FK_PatientHistory_DiagnosisStatus" FromRole="DiagnosisStatus" ToRole="PatientHistory" />
         </EntityType>
         <EntityType Name="Doctor">
@@ -885,15 +885,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Patronymic" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SpecializationId" Type="Int32" Nullable="false" />
           <Property Name="DepartmentId" Type="Int32" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Consultation" Relationship="Self.FK_Consultation_Doctor" FromRole="Doctor" ToRole="Consultation" />
+          <NavigationProperty Name="Consultaion" Relationship="Self.FK_Consultaion_Doctor" FromRole="Doctor" ToRole="Consultaion" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Doctor_Department" FromRole="Doctor" ToRole="Department" />
           <NavigationProperty Name="Specialization" Relationship="Self.FK_Doctor_Specialization" FromRole="Doctor" ToRole="Specialization" />
           <NavigationProperty Name="Notification" Relationship="Self.FK_Notification_Doctor" FromRole="Doctor" ToRole="Notification" />
@@ -904,16 +905,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Prescription" Relationship="Self.FK_Prescription_DoseUnit" FromRole="DoseUnit" ToRole="Prescription" />
         </EntityType>
-        <EntityType Name="Frequency">
+        <EntityType Name="Frequence">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Prescription" Relationship="Self.FK_Prescription_Frequency" FromRole="Frequency" ToRole="Prescription" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Prescription" Relationship="Self.FK_Prescription_Frequence" FromRole="Frequence" ToRole="Prescription" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -930,8 +931,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PatientId" Type="Int32" Nullable="false" />
           <Property Name="MetricTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Value" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="MeasuredAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Value" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="MeasuredDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="MetricType" Relationship="Self.FK_HealthMetric_MetricType" FromRole="HealthMetric" ToRole="MetricType" />
           <NavigationProperty Name="Patient" Relationship="Self.FK_HealthMetric_Patient" FromRole="HealthMetric" ToRole="Patient" />
@@ -941,7 +942,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Prescription" Relationship="Self.FK_Prescription_Instruction" FromRole="Instruction" ToRole="Prescription" />
         </EntityType>
         <EntityType Name="MedicalCard">
@@ -952,7 +953,7 @@
           <Property Name="PatientId" Type="Int32" Nullable="false" />
           <Property Name="BloodTypeId" Type="Int32" Nullable="false" />
           <Property Name="Height" Type="Int32" Nullable="false" />
-          <Property Name="Weight" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="BloodType" Relationship="Self.FK_MedicalCard_BloodType" FromRole="MedicalCard" ToRole="BloodType" />
@@ -963,19 +964,19 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PresciptionArchive" Relationship="Self.FK_PresciptionArchive_Medication1" FromRole="Medication" ToRole="PresciptionArchive" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Prescription" Relationship="Self.FK_Prescription_Medication" FromRole="Medication" ToRole="Prescription" />
+          <NavigationProperty Name="PrescriptionArchive" Relationship="Self.FK_PrescriptionArchive_Medication" FromRole="Medication" ToRole="PrescriptionArchive" />
         </EntityType>
         <EntityType Name="MetricType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UnitOfMetricTypeId" Type="Int32" Nullable="false" />
-          <Property Name="MinValue" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="MaxValue" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MinValue" Type="Decimal" Precision="10" Scale="5" />
+          <Property Name="MaxValue" Type="Decimal" Precision="10" Scale="5" />
           <NavigationProperty Name="HealthMetric" Relationship="Self.FK_HealthMetric_MetricType" FromRole="MetricType" ToRole="HealthMetric" />
           <NavigationProperty Name="UnitOfMetricType" Relationship="Self.FK_MetricType_UnitOfMetricType" FromRole="MetricType" ToRole="UnitOfMetricType" />
         </EntityType>
@@ -988,7 +989,7 @@
           <Property Name="DoctorId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="IsRead" Type="Boolean" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_Notification_Doctor" FromRole="Notification" ToRole="Doctor" />
           <NavigationProperty Name="Patient" Relationship="Self.FK_Notification_Patient" FromRole="Notification" ToRole="Patient" />
         </EntityType>
@@ -1001,36 +1002,36 @@
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronymic" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="GenderId" Type="Int32" Nullable="false" />
-          <Property Name="AddressId" Type="Int32" />
-          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="Self.FK_Patient_Address" FromRole="Patient" ToRole="Address" />
-          <NavigationProperty Name="Consultation" Relationship="Self.FK_Consultation_Patient" FromRole="Patient" ToRole="Consultation" />
+          <NavigationProperty Name="Consultaion" Relationship="Self.FK_Consultaion_Patient" FromRole="Patient" ToRole="Consultaion" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Patient_Gender" FromRole="Patient" ToRole="Gender" />
           <NavigationProperty Name="HealthMetric" Relationship="Self.FK_HealthMetric_Patient" FromRole="Patient" ToRole="HealthMetric" />
           <NavigationProperty Name="MedicalCard" Relationship="Self.FK_MedicalCard_Patient" FromRole="Patient" ToRole="MedicalCard" />
           <NavigationProperty Name="Notification" Relationship="Self.FK_Notification_Patient" FromRole="Patient" ToRole="Notification" />
-          <NavigationProperty Name="PatientComplaint" Relationship="Self.FK_PatientComplaint_Patient" FromRole="Patient" ToRole="PatientComplaint" />
+          <NavigationProperty Name="PatientCompaint" Relationship="Self.FK_PatientCompaint_Patient" FromRole="Patient" ToRole="PatientCompaint" />
           <NavigationProperty Name="PatientHistory" Relationship="Self.FK_PatientHistory_Patient" FromRole="Patient" ToRole="PatientHistory" />
-          <NavigationProperty Name="PresciptionArchive" Relationship="Self.FK_PresciptionArchive_Patient1" FromRole="Patient" ToRole="PresciptionArchive" />
           <NavigationProperty Name="Prescription" Relationship="Self.FK_Prescription_Patient" FromRole="Patient" ToRole="Prescription" />
+          <NavigationProperty Name="PrescriptionArchive" Relationship="Self.FK_PrescriptionArchive_Patient" FromRole="Patient" ToRole="PrescriptionArchive" />
           <NavigationProperty Name="WellnessJournal" Relationship="Self.FK_WellnessJournal_Patient" FromRole="Patient" ToRole="WellnessJournal" />
         </EntityType>
-        <EntityType Name="PatientComplaint">
+        <EntityType Name="PatientCompaint">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PatientId" Type="Int32" Nullable="false" />
           <Property Name="SymptomId" Type="Int32" Nullable="false" />
-          <Property Name="ComplaintDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SeverityId" Type="Int32" Nullable="false" />
+          <Property Name="CompaintDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_PatientComplaint_Patient" FromRole="PatientComplaint" ToRole="Patient" />
-          <NavigationProperty Name="Severity" Relationship="Self.FK_PatientComplaint_Severity" FromRole="PatientComplaint" ToRole="Severity" />
-          <NavigationProperty Name="Symptom" Relationship="Self.FK_PatientComplaint_Symptom" FromRole="PatientComplaint" ToRole="Symptom" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_PatientCompaint_Patient" FromRole="PatientCompaint" ToRole="Patient" />
+          <NavigationProperty Name="Severity" Relationship="Self.FK_PatientCompaint_Severity" FromRole="PatientCompaint" ToRole="Severity" />
+          <NavigationProperty Name="Symptom" Relationship="Self.FK_PatientCompaint_Symptom" FromRole="PatientCompaint" ToRole="Symptom" />
         </EntityType>
         <EntityType Name="PatientHistory">
           <Key>
@@ -1039,23 +1040,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PatientId" Type="Int32" Nullable="false" />
           <Property Name="DiagnosisId" Type="Int32" Nullable="false" />
-          <Property Name="DiagnosedDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DiagnosisStatusId" Type="Int32" />
+          <Property Name="DiagnosisStatusId" Type="Int32" Nullable="false" />
+          <Property Name="DiagnosisDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Diagnosis" Relationship="Self.FK_PatientHistory_Diagnosis" FromRole="PatientHistory" ToRole="Diagnosis" />
           <NavigationProperty Name="DiagnosisStatus" Relationship="Self.FK_PatientHistory_DiagnosisStatus" FromRole="PatientHistory" ToRole="DiagnosisStatus" />
           <NavigationProperty Name="Patient" Relationship="Self.FK_PatientHistory_Patient" FromRole="PatientHistory" ToRole="Patient" />
-        </EntityType>
-        <EntityType Name="PresciptionArchive">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PatientId" Type="Int32" Nullable="false" />
-          <Property Name="MedicationId" Type="Int32" Nullable="false" />
-          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Medication" Relationship="Self.FK_PresciptionArchive_Medication1" FromRole="PresciptionArchive" ToRole="Medication" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_PresciptionArchive_Patient1" FromRole="PresciptionArchive" ToRole="Patient" />
         </EntityType>
         <EntityType Name="Prescription">
           <Key>
@@ -1065,10 +1055,10 @@
           <Property Name="PatientId" Type="Int32" Nullable="false" />
           <Property Name="DoctorId" Type="Int32" Nullable="false" />
           <Property Name="MedicationId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="DoseUnitId" Type="Int32" Nullable="false" />
-          <Property Name="FrequencyId" Type="Int32" Nullable="false" />
-          <Property Name="DurationInDays" Type="Int32" Nullable="false" />
+          <Property Name="FrequenceId" Type="Int32" Nullable="false" />
+          <Property Name="DurationInDay" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="InstructionId" Type="Int32" Nullable="false" />
@@ -1076,18 +1066,29 @@
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_Prescription_Doctor" FromRole="Prescription" ToRole="Doctor" />
           <NavigationProperty Name="DoseUnit" Relationship="Self.FK_Prescription_DoseUnit" FromRole="Prescription" ToRole="DoseUnit" />
-          <NavigationProperty Name="Frequency" Relationship="Self.FK_Prescription_Frequency" FromRole="Prescription" ToRole="Frequency" />
+          <NavigationProperty Name="Frequence" Relationship="Self.FK_Prescription_Frequence" FromRole="Prescription" ToRole="Frequence" />
           <NavigationProperty Name="Instruction" Relationship="Self.FK_Prescription_Instruction" FromRole="Prescription" ToRole="Instruction" />
           <NavigationProperty Name="Medication" Relationship="Self.FK_Prescription_Medication" FromRole="Prescription" ToRole="Medication" />
           <NavigationProperty Name="Patient" Relationship="Self.FK_Prescription_Patient" FromRole="Prescription" ToRole="Patient" />
           <NavigationProperty Name="PrescriptionStatus" Relationship="Self.FK_Prescription_PrescriptionStatus" FromRole="Prescription" ToRole="PrescriptionStatus" />
+        </EntityType>
+        <EntityType Name="PrescriptionArchive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <Property Name="MedicationId" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Medication" Relationship="Self.FK_PrescriptionArchive_Medication" FromRole="PrescriptionArchive" ToRole="Medication" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_PrescriptionArchive_Patient" FromRole="PrescriptionArchive" ToRole="Patient" />
         </EntityType>
         <EntityType Name="PrescriptionStatus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Prescription" Relationship="Self.FK_Prescription_PrescriptionStatus" FromRole="PrescriptionStatus" ToRole="Prescription" />
         </EntityType>
         <EntityType Name="Severity">
@@ -1095,15 +1096,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PatientComplaint" Relationship="Self.FK_PatientComplaint_Severity" FromRole="Severity" ToRole="PatientComplaint" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PatientCompaint" Relationship="Self.FK_PatientCompaint_Severity" FromRole="Severity" ToRole="PatientCompaint" />
         </EntityType>
         <EntityType Name="Specialization">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK_Doctor_Specialization" FromRole="Specialization" ToRole="Doctor" />
         </EntityType>
         <EntityType Name="Symptom">
@@ -1111,10 +1112,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SymptomCategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PatientComplaint" Relationship="Self.FK_PatientComplaint_Symptom" FromRole="Symptom" ToRole="PatientComplaint" />
+          <NavigationProperty Name="PatientCompaint" Relationship="Self.FK_PatientCompaint_Symptom" FromRole="Symptom" ToRole="PatientCompaint" />
           <NavigationProperty Name="SymptomCategory" Relationship="Self.FK_Symptom_SymptomCategory" FromRole="Symptom" ToRole="SymptomCategory" />
         </EntityType>
         <EntityType Name="SymptomCategory">
@@ -1122,7 +1122,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Symptom" Relationship="Self.FK_Symptom_SymptomCategory" FromRole="SymptomCategory" ToRole="Symptom" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -1140,7 +1140,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="MetricType" Relationship="Self.FK_MetricType_UnitOfMetricType" FromRole="UnitOfMetricType" ToRole="MetricType" />
         </EntityType>
         <EntityType Name="WellnessJournal">
@@ -1155,7 +1155,7 @@
           <NavigationProperty Name="Patient" Relationship="Self.FK_WellnessJournal_Patient" FromRole="WellnessJournal" ToRole="Patient" />
         </EntityType>
         <Association Name="FK_Patient_Address">
-          <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
           <End Role="Patient" Type="Self.Patient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Address">
@@ -1178,26 +1178,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Consultation_Doctor">
+        <Association Name="FK_Consultaion_Doctor">
           <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
-          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <End Role="Consultaion" Type="Self.Consultaion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Doctor">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Consultation">
+            <Dependent Role="Consultaion">
               <PropertyRef Name="DoctorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Consultation_Patient">
+        <Association Name="FK_Consultaion_Patient">
           <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
-          <End Role="Consultation" Type="Self.Consultation" Multiplicity="*" />
+          <End Role="Consultaion" Type="Self.Consultaion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Patient">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Consultation">
+            <Dependent Role="Consultaion">
               <PropertyRef Name="PatientId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1239,7 +1239,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PatientHistory_DiagnosisStatus">
-          <End Role="DiagnosisStatus" Type="Self.DiagnosisStatus" Multiplicity="0..1" />
+          <End Role="DiagnosisStatus" Type="Self.DiagnosisStatus" Multiplicity="1" />
           <End Role="PatientHistory" Type="Self.PatientHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DiagnosisStatus">
@@ -1298,15 +1298,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Prescription_Frequency">
-          <End Role="Frequency" Type="Self.Frequency" Multiplicity="1" />
+        <Association Name="FK_Prescription_Frequence">
+          <End Role="Frequence" Type="Self.Frequence" Multiplicity="1" />
           <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Frequency">
+            <Principal Role="Frequence">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Prescription">
-              <PropertyRef Name="FrequencyId" />
+              <PropertyRef Name="FrequenceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1370,18 +1370,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PresciptionArchive_Medication1">
-          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
-          <End Role="PresciptionArchive" Type="Self.PresciptionArchive" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medication">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PresciptionArchive">
-              <PropertyRef Name="MedicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Prescription_Medication">
           <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
           <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
@@ -1390,6 +1378,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Prescription">
+              <PropertyRef Name="MedicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrescriptionArchive_Medication">
+          <End Role="Medication" Type="Self.Medication" Multiplicity="1" />
+          <End Role="PrescriptionArchive" Type="Self.PrescriptionArchive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medication">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrescriptionArchive">
               <PropertyRef Name="MedicationId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1418,14 +1418,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PatientComplaint_Patient">
+        <Association Name="FK_PatientCompaint_Patient">
           <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
-          <End Role="PatientComplaint" Type="Self.PatientComplaint" Multiplicity="*" />
+          <End Role="PatientCompaint" Type="Self.PatientCompaint" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Patient">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PatientComplaint">
+            <Dependent Role="PatientCompaint">
               <PropertyRef Name="PatientId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1442,18 +1442,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PresciptionArchive_Patient1">
-          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
-          <End Role="PresciptionArchive" Type="Self.PresciptionArchive" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patient">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PresciptionArchive">
-              <PropertyRef Name="PatientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Prescription_Patient">
           <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
           <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
@@ -1462,6 +1450,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Prescription">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrescriptionArchive_Patient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+          <End Role="PrescriptionArchive" Type="Self.PrescriptionArchive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrescriptionArchive">
               <PropertyRef Name="PatientId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1478,26 +1478,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PatientComplaint_Severity">
+        <Association Name="FK_PatientCompaint_Severity">
           <End Role="Severity" Type="Self.Severity" Multiplicity="1" />
-          <End Role="PatientComplaint" Type="Self.PatientComplaint" Multiplicity="*" />
+          <End Role="PatientCompaint" Type="Self.PatientCompaint" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Severity">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PatientComplaint">
+            <Dependent Role="PatientCompaint">
               <PropertyRef Name="SeverityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PatientComplaint_Symptom">
+        <Association Name="FK_PatientCompaint_Symptom">
           <End Role="Symptom" Type="Self.Symptom" Multiplicity="1" />
-          <End Role="PatientComplaint" Type="Self.PatientComplaint" Multiplicity="*" />
+          <End Role="PatientCompaint" Type="Self.PatientCompaint" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Symptom">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PatientComplaint">
+            <Dependent Role="PatientCompaint">
               <PropertyRef Name="SymptomId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1526,17 +1526,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DigitalTwinPatientDBTestEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DigitalTwinPatientDBTestOneEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Address" EntityType="Self.Address" />
           <EntitySet Name="BloodType" EntityType="Self.BloodType" />
-          <EntitySet Name="Consultation" EntityType="Self.Consultation" />
+          <EntitySet Name="Consultaion" EntityType="Self.Consultaion" />
           <EntitySet Name="Department" EntityType="Self.Department" />
           <EntitySet Name="Diagnosis" EntityType="Self.Diagnosis" />
           <EntitySet Name="DiagnosisCategory" EntityType="Self.DiagnosisCategory" />
           <EntitySet Name="DiagnosisStatus" EntityType="Self.DiagnosisStatus" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" />
           <EntitySet Name="DoseUnit" EntityType="Self.DoseUnit" />
-          <EntitySet Name="Frequency" EntityType="Self.Frequency" />
+          <EntitySet Name="Frequence" EntityType="Self.Frequence" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
           <EntitySet Name="HealthMetric" EntityType="Self.HealthMetric" />
           <EntitySet Name="Instruction" EntityType="Self.Instruction" />
@@ -1545,10 +1545,10 @@
           <EntitySet Name="MetricType" EntityType="Self.MetricType" />
           <EntitySet Name="Notification" EntityType="Self.Notification" />
           <EntitySet Name="Patient" EntityType="Self.Patient" />
-          <EntitySet Name="PatientComplaint" EntityType="Self.PatientComplaint" />
+          <EntitySet Name="PatientCompaint" EntityType="Self.PatientCompaint" />
           <EntitySet Name="PatientHistory" EntityType="Self.PatientHistory" />
-          <EntitySet Name="PresciptionArchive" EntityType="Self.PresciptionArchive" />
           <EntitySet Name="Prescription" EntityType="Self.Prescription" />
+          <EntitySet Name="PrescriptionArchive" EntityType="Self.PrescriptionArchive" />
           <EntitySet Name="PrescriptionStatus" EntityType="Self.PrescriptionStatus" />
           <EntitySet Name="Severity" EntityType="Self.Severity" />
           <EntitySet Name="Specialization" EntityType="Self.Specialization" />
@@ -1565,13 +1565,13 @@
             <End Role="BloodType" EntitySet="BloodType" />
             <End Role="MedicalCard" EntitySet="MedicalCard" />
           </AssociationSet>
-          <AssociationSet Name="FK_Consultation_Doctor" Association="Self.FK_Consultation_Doctor">
+          <AssociationSet Name="FK_Consultaion_Doctor" Association="Self.FK_Consultaion_Doctor">
             <End Role="Doctor" EntitySet="Doctor" />
-            <End Role="Consultation" EntitySet="Consultation" />
+            <End Role="Consultaion" EntitySet="Consultaion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Consultation_Patient" Association="Self.FK_Consultation_Patient">
+          <AssociationSet Name="FK_Consultaion_Patient" Association="Self.FK_Consultaion_Patient">
             <End Role="Patient" EntitySet="Patient" />
-            <End Role="Consultation" EntitySet="Consultation" />
+            <End Role="Consultaion" EntitySet="Consultaion" />
           </AssociationSet>
           <AssociationSet Name="FK_Doctor_Department" Association="Self.FK_Doctor_Department">
             <End Role="Department" EntitySet="Department" />
@@ -1605,8 +1605,8 @@
             <End Role="DoseUnit" EntitySet="DoseUnit" />
             <End Role="Prescription" EntitySet="Prescription" />
           </AssociationSet>
-          <AssociationSet Name="FK_Prescription_Frequency" Association="Self.FK_Prescription_Frequency">
-            <End Role="Frequency" EntitySet="Frequency" />
+          <AssociationSet Name="FK_Prescription_Frequence" Association="Self.FK_Prescription_Frequence">
+            <End Role="Frequence" EntitySet="Frequence" />
             <End Role="Prescription" EntitySet="Prescription" />
           </AssociationSet>
           <AssociationSet Name="FK_Patient_Gender" Association="Self.FK_Patient_Gender">
@@ -1629,13 +1629,13 @@
             <End Role="Patient" EntitySet="Patient" />
             <End Role="MedicalCard" EntitySet="MedicalCard" />
           </AssociationSet>
-          <AssociationSet Name="FK_PresciptionArchive_Medication1" Association="Self.FK_PresciptionArchive_Medication1">
-            <End Role="Medication" EntitySet="Medication" />
-            <End Role="PresciptionArchive" EntitySet="PresciptionArchive" />
-          </AssociationSet>
           <AssociationSet Name="FK_Prescription_Medication" Association="Self.FK_Prescription_Medication">
             <End Role="Medication" EntitySet="Medication" />
             <End Role="Prescription" EntitySet="Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrescriptionArchive_Medication" Association="Self.FK_PrescriptionArchive_Medication">
+            <End Role="Medication" EntitySet="Medication" />
+            <End Role="PrescriptionArchive" EntitySet="PrescriptionArchive" />
           </AssociationSet>
           <AssociationSet Name="FK_MetricType_UnitOfMetricType" Association="Self.FK_MetricType_UnitOfMetricType">
             <End Role="UnitOfMetricType" EntitySet="UnitOfMetricType" />
@@ -1645,33 +1645,33 @@
             <End Role="Patient" EntitySet="Patient" />
             <End Role="Notification" EntitySet="Notification" />
           </AssociationSet>
-          <AssociationSet Name="FK_PatientComplaint_Patient" Association="Self.FK_PatientComplaint_Patient">
+          <AssociationSet Name="FK_PatientCompaint_Patient" Association="Self.FK_PatientCompaint_Patient">
             <End Role="Patient" EntitySet="Patient" />
-            <End Role="PatientComplaint" EntitySet="PatientComplaint" />
+            <End Role="PatientCompaint" EntitySet="PatientCompaint" />
           </AssociationSet>
           <AssociationSet Name="FK_PatientHistory_Patient" Association="Self.FK_PatientHistory_Patient">
             <End Role="Patient" EntitySet="Patient" />
             <End Role="PatientHistory" EntitySet="PatientHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_PresciptionArchive_Patient1" Association="Self.FK_PresciptionArchive_Patient1">
-            <End Role="Patient" EntitySet="Patient" />
-            <End Role="PresciptionArchive" EntitySet="PresciptionArchive" />
-          </AssociationSet>
           <AssociationSet Name="FK_Prescription_Patient" Association="Self.FK_Prescription_Patient">
             <End Role="Patient" EntitySet="Patient" />
             <End Role="Prescription" EntitySet="Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrescriptionArchive_Patient" Association="Self.FK_PrescriptionArchive_Patient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="PrescriptionArchive" EntitySet="PrescriptionArchive" />
           </AssociationSet>
           <AssociationSet Name="FK_WellnessJournal_Patient" Association="Self.FK_WellnessJournal_Patient">
             <End Role="Patient" EntitySet="Patient" />
             <End Role="WellnessJournal" EntitySet="WellnessJournal" />
           </AssociationSet>
-          <AssociationSet Name="FK_PatientComplaint_Severity" Association="Self.FK_PatientComplaint_Severity">
+          <AssociationSet Name="FK_PatientCompaint_Severity" Association="Self.FK_PatientCompaint_Severity">
             <End Role="Severity" EntitySet="Severity" />
-            <End Role="PatientComplaint" EntitySet="PatientComplaint" />
+            <End Role="PatientCompaint" EntitySet="PatientCompaint" />
           </AssociationSet>
-          <AssociationSet Name="FK_PatientComplaint_Symptom" Association="Self.FK_PatientComplaint_Symptom">
+          <AssociationSet Name="FK_PatientCompaint_Symptom" Association="Self.FK_PatientCompaint_Symptom">
             <End Role="Symptom" EntitySet="Symptom" />
-            <End Role="PatientComplaint" EntitySet="PatientComplaint" />
+            <End Role="PatientCompaint" EntitySet="PatientCompaint" />
           </AssociationSet>
           <AssociationSet Name="FK_Prescription_PrescriptionStatus" Association="Self.FK_Prescription_PrescriptionStatus">
             <End Role="PrescriptionStatus" EntitySet="PrescriptionStatus" />
@@ -1687,9 +1687,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DigitalTwinPatientDBTestModelContainer" CdmEntityContainer="DigitalTwinPatientDBTestEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DigitalTwinPatientDBTestOneModelContainer" CdmEntityContainer="DigitalTwinPatientDBTestOneEntities">
           <EntitySetMapping Name="Address">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Address">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Address">
               <MappingFragment StoreEntitySet="Address">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="City" ColumnName="City" />
@@ -1699,16 +1699,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BloodType">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.BloodType">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.BloodType">
               <MappingFragment StoreEntitySet="BloodType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Consultation">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Consultation">
-              <MappingFragment StoreEntitySet="Consultation">
+          <EntitySetMapping Name="Consultaion">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Consultaion">
+              <MappingFragment StoreEntitySet="Consultaion">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
                 <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
@@ -1718,7 +1718,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Department">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Department">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Department">
               <MappingFragment StoreEntitySet="Department">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1726,7 +1726,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Diagnosis">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Diagnosis">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Diagnosis">
               <MappingFragment StoreEntitySet="Diagnosis">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CodeMKB" ColumnName="CodeMKB" />
@@ -1736,7 +1736,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DiagnosisCategory">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.DiagnosisCategory">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.DiagnosisCategory">
               <MappingFragment StoreEntitySet="DiagnosisCategory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1744,7 +1744,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DiagnosisStatus">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.DiagnosisStatus">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.DiagnosisStatus">
               <MappingFragment StoreEntitySet="DiagnosisStatus">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1752,7 +1752,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Doctor">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Doctor">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Doctor">
               <MappingFragment StoreEntitySet="Doctor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -1760,30 +1760,31 @@
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
                 <ScalarProperty Name="SpecializationId" ColumnName="SpecializationId" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DoseUnit">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.DoseUnit">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.DoseUnit">
               <MappingFragment StoreEntitySet="DoseUnit">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Frequency">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Frequency">
-              <MappingFragment StoreEntitySet="Frequency">
+          <EntitySetMapping Name="Frequence">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Frequence">
+              <MappingFragment StoreEntitySet="Frequence">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Gender">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1791,19 +1792,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HealthMetric">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.HealthMetric">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.HealthMetric">
               <MappingFragment StoreEntitySet="HealthMetric">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
                 <ScalarProperty Name="MetricTypeId" ColumnName="MetricTypeId" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="MeasuredAt" ColumnName="MeasuredAt" />
+                <ScalarProperty Name="MeasuredDate" ColumnName="MeasuredDate" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Instruction">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Instruction">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Instruction">
               <MappingFragment StoreEntitySet="Instruction">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1811,7 +1812,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MedicalCard">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.MedicalCard">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.MedicalCard">
               <MappingFragment StoreEntitySet="MedicalCard">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
@@ -1824,7 +1825,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Medication">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Medication">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Medication">
               <MappingFragment StoreEntitySet="Medication">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1832,18 +1833,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MetricType">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.MetricType">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.MetricType">
               <MappingFragment StoreEntitySet="MetricType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UnitOfMetricTypeId" ColumnName="UnitOfMetricTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="MinValue" ColumnName="MinValue" />
                 <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Notification">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Notification">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Notification">
               <MappingFragment StoreEntitySet="Notification">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
@@ -1855,7 +1856,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Patient">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Patient">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Patient">
               <MappingFragment StoreEntitySet="Patient">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -1863,49 +1864,39 @@
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PatientComplaint">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.PatientComplaint">
-              <MappingFragment StoreEntitySet="PatientComplaint">
+          <EntitySetMapping Name="PatientCompaint">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.PatientCompaint">
+              <MappingFragment StoreEntitySet="PatientCompaint">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
                 <ScalarProperty Name="SymptomId" ColumnName="SymptomId" />
-                <ScalarProperty Name="ComplaintDate" ColumnName="ComplaintDate" />
                 <ScalarProperty Name="SeverityId" ColumnName="SeverityId" />
+                <ScalarProperty Name="CompaintDate" ColumnName="CompaintDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PatientHistory">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.PatientHistory">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.PatientHistory">
               <MappingFragment StoreEntitySet="PatientHistory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
                 <ScalarProperty Name="DiagnosisId" ColumnName="DiagnosisId" />
-                <ScalarProperty Name="DiagnosedDate" ColumnName="DiagnosedDate" />
                 <ScalarProperty Name="DiagnosisStatusId" ColumnName="DiagnosisStatusId" />
+                <ScalarProperty Name="DiagnosisDate" ColumnName="DiagnosisDate" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PresciptionArchive">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.PresciptionArchive">
-              <MappingFragment StoreEntitySet="PresciptionArchive">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
-                <ScalarProperty Name="MedicationId" ColumnName="MedicationId" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Prescription">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Prescription">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Prescription">
               <MappingFragment StoreEntitySet="Prescription">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
@@ -1913,8 +1904,8 @@
                 <ScalarProperty Name="MedicationId" ColumnName="MedicationId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="DoseUnitId" ColumnName="DoseUnitId" />
-                <ScalarProperty Name="FrequencyId" ColumnName="FrequencyId" />
-                <ScalarProperty Name="DurationInDays" ColumnName="DurationInDays" />
+                <ScalarProperty Name="FrequenceId" ColumnName="FrequenceId" />
+                <ScalarProperty Name="DurationInDay" ColumnName="DurationInDay" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="InstructionId" ColumnName="InstructionId" />
@@ -1923,8 +1914,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PrescriptionArchive">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.PrescriptionArchive">
+              <MappingFragment StoreEntitySet="PrescriptionArchive">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="MedicationId" ColumnName="MedicationId" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PrescriptionStatus">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.PrescriptionStatus">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.PrescriptionStatus">
               <MappingFragment StoreEntitySet="PrescriptionStatus">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1932,7 +1933,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Severity">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Severity">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Severity">
               <MappingFragment StoreEntitySet="Severity">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1940,7 +1941,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Specialization">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Specialization">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Specialization">
               <MappingFragment StoreEntitySet="Specialization">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1948,17 +1949,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Symptom">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.Symptom">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.Symptom">
               <MappingFragment StoreEntitySet="Symptom">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="SymptomCategoryId" ColumnName="SymptomCategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SymptomCategory">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.SymptomCategory">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.SymptomCategory">
               <MappingFragment StoreEntitySet="SymptomCategory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1966,7 +1966,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.sysdiagrams">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1977,7 +1977,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UnitOfMetricType">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.UnitOfMetricType">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.UnitOfMetricType">
               <MappingFragment StoreEntitySet="UnitOfMetricType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1985,7 +1985,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WellnessJournal">
-            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestModel.WellnessJournal">
+            <EntityTypeMapping TypeName="DigitalTwinPatientDBTestOneModel.WellnessJournal">
               <MappingFragment StoreEntitySet="WellnessJournal">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
