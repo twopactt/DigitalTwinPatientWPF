@@ -3,6 +3,7 @@ using DigitalTwinPatientWPF.Helpers;
 using DigitalTwinPatientWPF.Statics;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace DigitalTwinPatientWPF
@@ -21,10 +22,20 @@ namespace DigitalTwinPatientWPF
             try
             {
                 string login = LoginEnter.Text;
-                //string password = PasswordEnter.Password;
+                string password = PasswordEnter.Password;
 
-                var doctor = _db.Doctor.Where(d => d.Login == login).FirstOrDefault();
-                //var doctor = _db.Doctor.Where(d => d.Login == login && d.Password == password).FirstOrDefault();
+                if (!Regex.IsMatch(login, @"^[a-zA-Z]\d{7}$"))
+                {
+                    _mh.ShowError("Логин должен быть в формате: буква + 7 цифр");
+                    return;
+                }
+                if (password.Length < 10)
+                {
+                    _mh.ShowError("Пароль должен быть минимум 10 символов");
+                    return;
+                }
+
+                var doctor = _db.Doctor.Where(d => d.Login == login && d.Password == password).FirstOrDefault();
 
                 if (doctor == null)
                 {
@@ -39,10 +50,10 @@ namespace DigitalTwinPatientWPF
                 twoFactorWindow.Owner = this;
                 twoFactorWindow.ShowDialog();
 
-                //if (!twoFactorWindow.IsConfirm)
-                //{
-                //    return;
-                //}    
+                if (!twoFactorWindow.IsConfirm)
+                {
+                    return;
+                }
 
                 CurrentSession.CurrentUser = doctor;
 

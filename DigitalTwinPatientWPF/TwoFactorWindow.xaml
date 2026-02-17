@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DigitalTwinPatientWPF"
         mc:Ignorable="d"
+        Background="#F4F7FA"
         Title="TwoFactorWindow" Height="150" Width="250">
     <StackPanel Margin="10">
         <TextBlock Text="Введите код подтверждения" />
         <TextBox x:Name="CodeBox" Margin="0,5" />
-        <Button Content="Ok" x:Name="ConfirmButton" Click="ConfirmButton_Click" />
+        <Button Content="Ок" x:Name="ConfirmButton" Click="ConfirmButton_Click" />
     </StackPanel>
 </Window>

@@ -175,6 +175,9 @@
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientCardWindow.xaml.cs">
+      <DependentUpon>PatientCardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Statics\CurrentSession.cs" />
     <Compile Include="TwoFactorWindow.xaml.cs">
       <DependentUpon>TwoFactorWindow.xaml</DependentUpon>
@@ -196,6 +199,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PatientCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TwoFactorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

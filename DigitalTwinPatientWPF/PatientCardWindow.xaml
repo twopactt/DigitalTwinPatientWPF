@@ -1,0 +1,154 @@
+﻿<Window x:Class="DigitalTwinPatientWPF.PatientCardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitalTwinPatientWPF"
+        mc:Ignorable="d"
+        Title="PatientCardWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- БЫСТРЫЕ ДЕЙСТВИЯ () -->
+        <GroupBox Header="Быстрые действия" Margin="10">
+            <StackPanel>
+                <Button Content="Запись на прием"
+            Margin="0 0 0 5"
+            Click="AddConsultation_Click"/>
+
+                <Button Content="Назначить лечение"
+            Margin="0 0 0 5"
+            Click="AddPrescription_Click"/>
+
+                <Button Content="Добавить исследование"
+            Margin="0 0 0 5"
+            Click="AddResearch_Click"/>
+
+
+
+                <Separator Margin="0 5"/>
+
+                <Button Content="Создать эпикриз"
+            Click="EpicrizCard_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+
+        <!-- ОСНОВНАЯ ОБЛАСТЬ -->
+        <TabControl Grid.Column="1" Margin="10">
+
+            <!-- ОБЗОР -->
+            <TabItem Header="Обзор">
+                <StackPanel Margin="20">
+                    <TextBlock x:Name="FullNameText"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Margin="0,0,0,15"/>
+
+                    <TextBlock x:Name="AgeText"/>
+                    <TextBlock x:Name="GenderText"/>
+                    <TextBlock x:Name="PhoneText"/>
+                    <TextBlock x:Name="BloodTypeText"/>
+                    <TextBlock x:Name="HeightWeightText"/>
+                </StackPanel>
+            </TabItem>
+
+            <!-- ИСТОРИЯ БОЛЕЗНИ -->
+            <TabItem Header="История болезни">
+                <DataGrid x:Name="HistoryGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Дата"
+                                        Binding="{Binding Date}"
+                                        Width="120"/>
+                        <DataGridTextColumn Header="Диагноз"
+                                        Binding="{Binding Diagnosis}"
+                                        Width="*"/>
+                        <DataGridTextColumn Header="Категория"
+                                        Binding="{Binding Category}"
+                                        Width="150"/>
+                        <DataGridTextColumn Header="Статус"
+                                        Binding="{Binding Status}"
+                                        Width="180"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!-- НАЗНАЧЕНИЯ -->
+            <TabItem Header="Назначения">
+                <DataGrid x:Name="PrescriptionGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Препарат"
+                                        Binding="{Binding Medication}"
+                                        Width="*"/>
+                        <DataGridTextColumn Header="Дозировка"
+                                        Binding="{Binding Dose}"
+                                        Width="150"/>
+                        <DataGridTextColumn Header="Частота"
+                                        Binding="{Binding Frequency}"
+                                        Width="150"/>
+                        <DataGridTextColumn Header="Статус"
+                                        Binding="{Binding Status}"
+                                        Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!-- ИССЛЕДОВАНИЯ -->
+            <TabItem Header="Исследования">
+                <DataGrid x:Name="MetricGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Показатель"
+                                        Binding="{Binding Metric}"
+                                        Width="*"/>
+                        <DataGridTextColumn Header="Значение"
+                                        Binding="{Binding Value}"
+                                        Width="150"/>
+                        <DataGridTextColumn Header="Дата"
+                                        Binding="{Binding Date}"
+                                        Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!-- ВИЗУАЛИЗАЦИЯ -->
+            <TabItem Header="Визуализация">
+                <Grid>
+                    <TextBlock Text="Графическая визуализация показателей (в разработке)"
+                           Foreground="Gray"
+                           FontSize="16"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+
+            <!-- ДОКУМЕНТЫ -->
+            <TabItem Header="Документы">
+                <DataGrid x:Name="ConsultationGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Дата"
+                                        Binding="{Binding Date}"
+                                        Width="150"/>
+                        <DataGridTextColumn Header="Врач"
+                                        Binding="{Binding Doctor}"
+                                        Width="200"/>
+                        <DataGridTextColumn Header="Комментарий"
+                                        Binding="{Binding Comment}"
+                                        Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

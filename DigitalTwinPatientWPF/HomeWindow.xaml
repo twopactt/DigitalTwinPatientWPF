@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DigitalTwinPatientWPF"
         mc:Ignorable="d"
+        Background="#F4F7FA"
         Title="HomeWindow" Height="700" Width="1200">
     <Grid>
         <StackPanel Margin="10">
@@ -91,54 +92,6 @@
                                           IsReadOnly="True"
                                           SelectionMode="Single"
                                           Margin="10">
-                                    <!-- Контекстное меню-->
-                                    <DataGrid.RowStyle>
-                                        <Style TargetType="DataGridRow">
-                                            <Setter Property="ContextMenu">
-                                                <Setter.Value>
-                                                    <ContextMenu>
-                                                        <MenuItem Header="Открыть карту" Padding="5">
-                                                        </MenuItem>
-                                                        <MenuItem Header="Создать назначение" Padding="5">
-                                                        </MenuItem>
-                                                        <MenuItem Header="Запланировать визит" Padding="5">
-                                                        </MenuItem>
-                                                        <MenuItem Header="Экспорт данных" Padding="5">
-                                                        </MenuItem>
-                                                        <MenuItem Header="Быстрая заметка" Padding="5">
-                                                        </MenuItem>
-                                                    </ContextMenu>
-                                                </Setter.Value>
-                                            </Setter>
-
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding RiskLevel}" Value="High">
-                                                    <Setter Property="Background" Value="#FFE6B3B3" />
-                                                    <Setter Property="ToolTip" Value="Хронический" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding RiskLevel}" Value="Medium">
-                                                    <Setter Property="Background" Value="#FFE9E6B3" />
-                                                    <Setter Property="ToolTip" Value="Подтвержденный" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </DataGrid.RowStyle>
-                                    <!-- вот здесь конец-->
-                                    <DataGrid.Resources>
-                                        <Style TargetType="DataGridRow">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding RiskLevel}" Value="High">
-                                                    <Setter Property="Background" Value="#FFE6B3B3"/>
-                                                    <Setter Property="ToolTip" Value="Хронический"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding RiskLevel}" Value="Medium">
-                                                    <Setter Property="Background" Value="#FFF9E6B3"/>
-                                                    <Setter Property="ToolTip" Value="Подтвержденный"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </DataGrid.Resources>
-
                                     <DataGrid.Columns>
                                         <DataGridTemplateColumn Header="Фото" Width="50">
                                             <DataGridTemplateColumn.CellTemplate>
@@ -158,7 +111,7 @@
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
-                                                        <Button Content="👁" Width="25" Margin="2" Tag="{Binding Id}"/>
+                                                        <Button Content="👁" Width="25" Margin="2" Tag="{Binding Id}" Click="OpenPatientCard_Click"/>
                                                         <Button Content="📋" Width="25" Margin="2" Tag="{Binding Id}"/>
                                                     </StackPanel>
                                                 </DataTemplate>

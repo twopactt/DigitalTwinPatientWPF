@@ -14,8 +14,10 @@ namespace DigitalTwinPatientWPF
     {
         private DigitalTwinPatientDBTestOneEntities _db = new DigitalTwinPatientDBTestOneEntities();
         private MessageHelper _mh = new MessageHelper();
+
         private Doctor _currentDoctor;
         private List<PatientShortDto> _allPatients;
+
         private DispatcherTimer _timer = new DispatcherTimer();
         private DateTime _lastActivity = DateTime.Now;
 
@@ -349,6 +351,17 @@ namespace DigitalTwinPatientWPF
             CurrentSession.CurrentUser = null;
             new MainWindow().Show();
             this.Close();
+        }
+
+        // Нажатие на пациента
+        private void OpenPatientCard_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int patientId)
+            {
+                var patientCardWindow = new PatientCardWindow(patientId);
+                patientCardWindow.Owner = this;
+                patientCardWindow.ShowDialog();
+            }
         }
     }
 
